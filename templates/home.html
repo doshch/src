@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-	<title>First Django Page</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-	<h1>{{title}}</h1>
+{% block head_title %} Welcome {{block.super}} {% endblock %}
 
-	<form method='POST' action=''>{% csrf_token %}
-		{{form.as_p}}
-		<input type='submit' value='Sign Up'>
-	</form>
+{% block jumbotron_content %}
+         <h1>Hello there! example</h1>
+         <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+         <p>To see the difference between static and fixed top navbars, just scroll.</p>
+         <p>
+         <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
+         </p>
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+	<div class="row">
+		<div class="col-sm-6 col-md-3">
+			<h1>{{title}}</h1>
+			<form method='POST' action=''>{% csrf_token %}
+			{{form|crispy}}
+			<input class='btn btn-primary' type='submit' value='Sign Up'>
+			</form>
+		</div>
+	</div>
+{% endblock %}
